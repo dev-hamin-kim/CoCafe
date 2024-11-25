@@ -8,6 +8,16 @@
 import Foundation
 
 struct Order {
-    var items: [Item]
-}
+    let item: Item
+    var count: Int = 1
+    
+    mutating func addOne() {
+        count += 1
+    }
+    
+    mutating func subtractOne() {
+        guard count > 2 else { return }
+        count -= 1
+    }
 
+}
