@@ -15,6 +15,7 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureTableView()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +29,17 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         self.addSubview(tableView)
     }
     
+    private func configureConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count
     }
@@ -39,4 +51,3 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
-
