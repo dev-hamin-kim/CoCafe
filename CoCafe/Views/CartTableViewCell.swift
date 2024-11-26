@@ -91,10 +91,13 @@ final class CartTableViewCell: UITableViewCell {
     }
     
     private func configureConstraints() {
+        menuNameLabel.translatesAutoresizingMaskIntoConstraints = false
         cellStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            menuNameLabel.widthAnchor.constraint(equalToConstant: 130),
+            
             cellStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 26),
-            cellStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            cellStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
             cellStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             cellStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
         ])
