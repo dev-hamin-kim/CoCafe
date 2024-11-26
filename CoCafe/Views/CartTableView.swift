@@ -25,6 +25,7 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.register(CartTableViewCell.self, forCellReuseIdentifier: "CartCell")
         tableView.dataSource = self
         tableView.delegate = self
+        self.addSubview(tableView)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
