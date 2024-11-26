@@ -52,7 +52,7 @@ final class CartTableViewCell: UITableViewCell {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.text = "4,900"
+        label.text = ""
         label.textAlignment = .center
         label.textColor = .conanBrown
         return label
@@ -103,6 +103,7 @@ final class CartTableViewCell: UITableViewCell {
     func configureCellData(order: Order) {
         self.menuNameLabel.text = order.item.name
         self.countLabel.text = order.count.description
+        self.priceLabel.text = order.item.price.description
     }
 }
 
