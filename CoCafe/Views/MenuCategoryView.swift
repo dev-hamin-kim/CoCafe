@@ -25,11 +25,27 @@ class MenuCategoryView: UIView {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0  // 기본 선택값
-        control.backgroundColor = .white
+        control.backgroundColor = .clear
         control.selectedSegmentTintColor = UIColor(named: "MainColor")  // 선택된 세그먼트 색상
-        control.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        control.setTitleTextAttributes([
+            .foregroundColor: UIColor.white,  // 선택된 텍스트 색상
+            .font: UIFont.boldSystemFont(ofSize: 14)
+        ], for: .selected)
         control.setTitleTextAttributes([.foregroundColor: UIColor(named: "MainColor") ?? .black], for: .normal)
         control.setDividerImage(UIImage(), forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        control.setBackgroundImage(UIImage(), for: .normal, barMetrics: .default)
+        control.setBackgroundImage(UIImage(named: "CategorySelectedImage"), for: .selected, barMetrics: .default)
+        
+        // 그림자 효과 추가
+        control.layer.shadowColor = UIColor.black.cgColor  // 그림자 색상
+        control.layer.shadowOpacity = 0.3  // 그림자 불투명도
+        control.layer.shadowOffset = CGSize(width: 0, height: 2)  // 그림자 위치 (세로로 2pt)
+        control.layer.shadowRadius = 4  // 그림자 반경 (흐림 효과)
+        
+        // 코너 라운딩 적용
+        control.layer.cornerRadius = 10
+        control.layer.masksToBounds = true
+        
         return control
     }()
     
