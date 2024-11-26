@@ -38,6 +38,14 @@ final class CartTableViewCell: UITableViewCell {
         button.setTitleColor(.conanBrown, for: .normal)
         return button
     }()
+    
+    let priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.text = "4,900"
+        label.textColor = .conanBrown
+        return label
+    }()
 }
 
 extension UIColor {
