@@ -9,7 +9,7 @@ import UIKit
 final class CartTableViewCell: UITableViewCell {
     private let menuNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.text = "아이스 아메리카노"
         label.textColor = .conanBrown
         return label
