@@ -69,7 +69,7 @@ final class CartTableViewCell: UITableViewCell {
     private lazy var cellStackView: UIStackView = {
         let stview = UIStackView(arrangedSubviews: [menuNameLabel, countStackView, priceLabel, deleteButton])
         stview.axis = .horizontal
-        stview.distribution = .fillProportionally
+        stview.distribution = .equalSpacing
         stview.alignment = .fill
         stview.spacing = 15
         return stview
@@ -112,7 +112,7 @@ extension UIColor {
     static let conanRibbonRed = UIColor(red: 225/255, green: 66/255, blue: 66/255, alpha: 1.0)
 }
 
-//@available(iOS 17.0, *)
-//#Preview {
-//    ViewController()
-//}
+@available(iOS 17.0, *)
+#Preview {
+    ViewController()
+}
