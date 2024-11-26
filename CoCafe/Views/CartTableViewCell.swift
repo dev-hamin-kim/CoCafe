@@ -46,6 +46,13 @@ final class CartTableViewCell: UITableViewCell {
         label.textColor = .conanBrown
         return label
     }()
+    
+    let deleteButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("X", for: .normal)
+        return button
+    }()
 }
 
 extension UIColor {
