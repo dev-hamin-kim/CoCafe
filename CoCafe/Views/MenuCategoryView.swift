@@ -14,6 +14,8 @@ class MenuCategoryView: UIView {
         control.selectedSegmentIndex = 0  // 기본 선택값
         control.backgroundColor = .white
         control.selectedSegmentTintColor = UIColor(named: "MainColor")  // 선택된 세그먼트 색상
+        control.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        control.setTitleTextAttributes([.foregroundColor: UIColor(named: "MainColor") ?? .black], for: .normal)
         return control
     }()
     
