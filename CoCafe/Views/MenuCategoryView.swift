@@ -8,6 +8,13 @@
 import UIKit
 
 class MenuCategoryView: UIView {
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "Logo"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let menuSegmentedControl: UISegmentedControl = {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
         let control = UISegmentedControl(items: items)
@@ -51,11 +58,20 @@ class MenuCategoryView: UIView {
         }, for: .valueChanged)
         
         // 오토레이아웃 설정
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+                addSubview(logoImageView)
+        
         menuSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         addSubview(menuSegmentedControl)
         
         NSLayoutConstraint.activate([
-            menuSegmentedControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10), // 상단에서 10pt 아래
+            logoImageView.centerXAnchor.constraint(equalTo:self.centerXAnchor),
+                        logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+                        logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                        logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                        logoImageView.heightAnchor.constraint(equalToConstant: 40),
+            
+            menuSegmentedControl.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10), // 상단에서 10pt 아래
             menuSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             menuSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             menuSegmentedControl.heightAnchor.constraint(equalToConstant: 45)
