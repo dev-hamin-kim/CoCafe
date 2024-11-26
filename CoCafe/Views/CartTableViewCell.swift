@@ -43,7 +43,7 @@ final class CartTableViewCell: UITableViewCell {
     private lazy var countStackView: UIStackView = {
         let stview = UIStackView(arrangedSubviews: [minusButton, countLabel, plusButton])
         stview.axis = .horizontal
-        stview.distribution = .fillEqually
+        stview.distribution = .fillProportionally
         stview.alignment = .fill
         stview.spacing = 0
         return stview
