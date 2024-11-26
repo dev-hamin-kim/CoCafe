@@ -17,4 +17,18 @@ struct Cart {
         
         return result
     }
+    
+    mutating func clearCart() {
+        orders = []
+    }
+    
+    mutating func addToCart(item: Item) {
+        var existingOrder = orders.first(where: { $0.item == item })
+
+        guard var existingOrder else { return orders.append(Order(item: item, count: 1)) }
+        
+        existingOrder.addOne()
+        
+    }
+    
 }
