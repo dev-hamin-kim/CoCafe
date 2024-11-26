@@ -26,6 +26,7 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.register(CartTableViewCell.self, forCellReuseIdentifier: "CartCell")
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         self.addSubview(tableView)
     }
     
