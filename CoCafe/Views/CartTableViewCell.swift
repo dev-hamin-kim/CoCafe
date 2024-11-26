@@ -27,6 +27,7 @@ final class CartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = "1"
+        label.textAlignment = .center
         label.textColor = .conanBrown
         return label
     }()
