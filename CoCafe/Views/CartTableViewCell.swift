@@ -53,6 +53,7 @@ final class CartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.text = "4,900"
+        label.textAlignment = .center
         label.textColor = .conanBrown
         return label
     }()
