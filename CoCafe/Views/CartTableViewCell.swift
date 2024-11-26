@@ -51,10 +51,12 @@ final class CartTableViewCell: UITableViewCell {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("X", for: .normal)
+        button.setTitleColor(.conanRibbonRed, for: .normal)
         return button
     }()
 }
 
 extension UIColor {
     static let conanBrown = UIColor(red: 108, green: 77, blue: 30, alpha: 1.0)
+    static let conanRibbonRed = UIColor(red: 225, green: 66, blue: 66, alpha: 1.0)
 }
