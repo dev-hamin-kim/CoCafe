@@ -7,7 +7,7 @@
 import UIKit
 
 final class CartTableViewCell: UITableViewCell {
-    let menuNameLabel: UILabel = {
+    private let menuNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = "아이스 아메리카노"
@@ -15,7 +15,7 @@ final class CartTableViewCell: UITableViewCell {
         return label
     }()
     
-    let minusButton: UIButton = {
+    private let minusButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("-", for: .normal)
@@ -23,7 +23,7 @@ final class CartTableViewCell: UITableViewCell {
         return button
     }()
     
-    let countLabel: UILabel = {
+    private let countLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = "1"
@@ -40,7 +40,7 @@ final class CartTableViewCell: UITableViewCell {
         return stview
     }()
     
-    let plusButton: UIButton = {
+    private let plusButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("+", for: .normal)
@@ -48,7 +48,7 @@ final class CartTableViewCell: UITableViewCell {
         return button
     }()
     
-    let priceLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = "4,900"
@@ -56,7 +56,7 @@ final class CartTableViewCell: UITableViewCell {
         return label
     }()
     
-    let deleteButton: UIButton = {
+    private let deleteButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("X", for: .normal)
