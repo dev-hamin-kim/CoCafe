@@ -22,6 +22,14 @@ final class CartTableViewCell: UITableViewCell {
         button.setTitleColor(.conanBrown, for: .normal)
         return button
     }()
+    
+    let plusButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("+", for: .normal)
+        button.setTitleColor(.conanBrown, for: .normal)
+        return button
+    }()
 }
 
 extension UIColor {
