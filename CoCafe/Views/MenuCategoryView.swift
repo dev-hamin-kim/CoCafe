@@ -35,17 +35,13 @@ class MenuCategoryView: UIView {
             
             print("선택된 카테고리 인덱스: \(sender.selectedSegmentIndex)")
             
-            // 선택된 인덱스에 따른 동작 추가
             switch sender.selectedSegmentIndex {
             case 0:
-                // 커피 선택 시의 동작
-                print("커피 선택됨")
+                print("Coffee 선택됨")
             case 1:
-                // 차 선택 시의 동작
-                print("차 선택됨")
+                print("Non-Coffee 선택됨")
             case 2:
-                // 주스 선택 시의 동작
-                print("주스 선택됨")
+                print("Dessert 선택됨")
             default:
                 break
             }
