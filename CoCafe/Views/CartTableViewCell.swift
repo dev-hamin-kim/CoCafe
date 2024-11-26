@@ -23,6 +23,14 @@ final class CartTableViewCell: UITableViewCell {
         return button
     }()
     
+    let countLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.text = "1"
+        label.textColor = .conanBrown
+        return label
+    }()
+    
     let plusButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
