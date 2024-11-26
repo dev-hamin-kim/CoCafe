@@ -16,6 +16,7 @@ class MenuCategoryView: UIView {
         control.selectedSegmentTintColor = UIColor(named: "MainColor")  // 선택된 세그먼트 색상
         control.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         control.setTitleTextAttributes([.foregroundColor: UIColor(named: "MainColor") ?? .black], for: .normal)
+        control.setDividerImage(UIImage(), forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
         return control
     }()
     
