@@ -106,7 +106,7 @@ final class CartTableViewCell: UITableViewCell {
     func configureCellData(order: Order) {
         self.menuNameLabel.text = order.item.name
         self.countLabel.text = order.count.description
-        self.priceLabel.text = order.item.price.description
+        self.priceLabel.text = order.item.price.withComma
     }
 }
 
