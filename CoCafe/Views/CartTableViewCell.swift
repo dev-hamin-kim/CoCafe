@@ -76,6 +76,7 @@ final class CartTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         configureStackViews()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -85,9 +86,24 @@ final class CartTableViewCell: UITableViewCell {
     private func configureStackViews() {
         self.contentView.addSubview(cellStackView)
     }
+    
+    private func configureConstraints() {
+        cellStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cellStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            cellStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            cellStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            cellStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
+        ])
+    }
 }
 
 extension UIColor {
     static let conanBrown = UIColor(red: 108, green: 77, blue: 30, alpha: 1.0)
     static let conanRibbonRed = UIColor(red: 225, green: 66, blue: 66, alpha: 1.0)
 }
+
+//@available(iOS 17.0, *)
+//#Preview {
+//    CartTableViewCell()
+//}
