@@ -9,12 +9,17 @@ enum Category {
     case Coffee, NonCoffee, Dessert
 }
 
-struct Item {
+struct Item: Equatable {
     let name: String
     let category: Category
     let price: Int
     let icon: String
     
+    // 추후 음료 옵션을 넣을 경우 같은 이름을 가진 음료라도 다른 음료로 취급할 수 있게 Equatable 프로토콜을 채택하였습니다.
+    // 옵션 넣은 뒤에 옵션도 같은 경우에만 true를 리턴하도록 refactor 예정.
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.name == rhs.name
+    }
     
     static var MenuList: [Item] = [
         Item(name: "아이스 아메리카노", category: .Coffee, price: 4500, icon: "IcedAmericano"),
