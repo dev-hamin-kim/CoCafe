@@ -13,7 +13,7 @@ class MenuCategoryView: UIView {
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0  // 기본 선택값
         control.backgroundColor = .white
-        control.selectedSegmentTintColor = .systemBlue  // 선택된 세그먼트 색상
+        control.selectedSegmentTintColor = UIColor(named: "MainColor")  // 선택된 세그먼트 색상
         return control
     }()
     
