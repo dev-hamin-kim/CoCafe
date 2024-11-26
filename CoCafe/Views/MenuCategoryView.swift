@@ -55,8 +55,8 @@ class MenuCategoryView: UIView {
         
         NSLayoutConstraint.activate([
             menuSegmentedControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10), // 상단에서 10pt 아래
-            menuSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            menuSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            menuSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            menuSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             menuSegmentedControl.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
