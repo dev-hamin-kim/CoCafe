@@ -7,16 +7,24 @@
 import UIKit
 
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
+    let tableView = UITableView()
     let orders = Item.MenuList.map { item in
         Order(item: item, count: Int.random(in: 1 ... 20))
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        configureTableView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureTableView() {
+        tableView.register(CartTableViewCell.self, forCellReuseIdentifier: "CartCell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,3 +38,4 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+
