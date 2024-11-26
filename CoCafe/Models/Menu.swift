@@ -5,6 +5,8 @@
 //  Created by 김하민 on 11/25/24.
 //
 
+import Foundation
+
 enum Category {
     case Coffee, NonCoffee, Dessert
 }
@@ -35,3 +37,15 @@ struct Item: Equatable {
     ]
 }
 
+extension Int {
+
+    private static var commaFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+
+    internal var withComma: String {
+        return Int.commaFormatter.string(from: NSNumber(value: self)) ?? "\(self)"
+    }
+}
