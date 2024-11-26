@@ -15,6 +15,12 @@ class MenuCategoryView: UIView {
         return imageView
     }()
     
+    private let conanFaceImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "ConanLogo"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let menuSegmentedControl: UISegmentedControl = {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
         let control = UISegmentedControl(items: items)
@@ -34,7 +40,7 @@ class MenuCategoryView: UIView {
         
         configureUI()
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,17 +65,25 @@ class MenuCategoryView: UIView {
         
         // 오토레이아웃 설정
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-                addSubview(logoImageView)
+        addSubview(logoImageView)
+        
+        conanFaceImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(conanFaceImageView)
         
         menuSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         addSubview(menuSegmentedControl)
         
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo:self.centerXAnchor),
-                        logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-                        logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                        logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                        logoImageView.heightAnchor.constraint(equalToConstant: 40),
+            logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            //logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            //logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: 40),
+            logoImageView.widthAnchor.constraint(equalToConstant: 150),
+            
+            conanFaceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            conanFaceImageView.trailingAnchor.constraint(equalTo: logoImageView.leadingAnchor, constant: 5),
+            conanFaceImageView.heightAnchor.constraint(equalToConstant: 40),
             
             menuSegmentedControl.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10), // 상단에서 10pt 아래
             menuSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
