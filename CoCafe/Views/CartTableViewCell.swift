@@ -101,8 +101,8 @@ final class CartTableViewCell: UITableViewCell {
 }
 
 extension UIColor {
-    static let conanBrown = UIColor(red: 108, green: 77, blue: 30, alpha: 1.0)
-    static let conanRibbonRed = UIColor(red: 225, green: 66, blue: 66, alpha: 1.0)
+    static let conanBrown = UIColor(red: 108/255, green: 77/255, blue: 30/255, alpha: 1.0)
+    static let conanRibbonRed = UIColor(red: 225/255, green: 66/255, blue: 66/255, alpha: 1.0)
 }
 
 @available(iOS 17.0, *)
