@@ -72,6 +72,19 @@ final class CartTableViewCell: UITableViewCell {
         stview.spacing = 15
         return stview
     }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        configureStackViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureStackViews() {
+        self.contentView.addSubview(cellStackView)
+    }
 }
 
 extension UIColor {
