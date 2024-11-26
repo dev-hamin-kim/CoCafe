@@ -10,7 +10,7 @@ final class CartTableViewCell: UITableViewCell {
     private let menuNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.text = "아이스 아메리카노"
+        label.text = ""
         label.textColor = .conanBrown
         return label
     }()
@@ -26,7 +26,7 @@ final class CartTableViewCell: UITableViewCell {
     private let countLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.text = "1"
+        label.text = ""
         label.textAlignment = .center
         label.textColor = .conanBrown
         return label
@@ -77,6 +77,7 @@ final class CartTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        
         configureStackViews()
         configureConstraints()
     }
@@ -98,6 +99,11 @@ final class CartTableViewCell: UITableViewCell {
             cellStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10)
         ])
     }
+    
+    func configureCellData(order: Order) {
+        self.menuNameLabel.text = order.item.name
+        self.countLabel.text = order.count.description
+    }
 }
 
 extension UIColor {
@@ -105,7 +111,7 @@ extension UIColor {
     static let conanRibbonRed = UIColor(red: 225/255, green: 66/255, blue: 66/255, alpha: 1.0)
 }
 
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//    ViewController()
+//}
