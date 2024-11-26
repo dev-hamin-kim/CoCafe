@@ -11,6 +11,7 @@ final class CartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = "아이스 아메리카노"
+        label.textColor = .conanBrown
         return label
     }()
     
@@ -18,6 +19,11 @@ final class CartTableViewCell: UITableViewCell {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("-", for: .normal)
+        button.setTitleColor(.conanBrown, for: .normal)
         return button
     }()
+}
+
+extension UIColor {
+    static let conanBrown = UIColor(red: 108, green: 77, blue: 30, alpha: 1.0)
 }
