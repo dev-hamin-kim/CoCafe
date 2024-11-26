@@ -50,7 +50,7 @@ final class CartTableViewCell: UITableViewCell {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.text = "4,900"
         label.textColor = .conanBrown
         return label
