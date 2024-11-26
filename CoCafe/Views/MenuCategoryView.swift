@@ -20,6 +20,8 @@ class MenuCategoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = .white //view 배경 색상 설정
+        
         configureUI()
     }
         
