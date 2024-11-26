@@ -63,6 +63,15 @@ final class CartTableViewCell: UITableViewCell {
         button.setTitleColor(.conanRibbonRed, for: .normal)
         return button
     }()
+    
+    private lazy var cellStackView: UIStackView = {
+        let stview = UIStackView()
+        stview.axis = .horizontal
+        stview.distribution = .fillEqually
+        stview.alignment = .fill
+        stview.spacing = 15
+        return stview
+    }()
 }
 
 extension UIColor {
