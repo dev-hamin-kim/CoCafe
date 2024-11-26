@@ -18,6 +18,20 @@ struct Cart {
         return result
     }
     
+    func totalQuantity() -> Int {
+        var result: Int = 0
+        
+        for order in orders {
+            result += order.count
+        }
+        
+        return result
+    }
+    
+    mutating func deleteOrder(in row: Int) {
+        orders.remove(at: row)
+    }
+    
     mutating func clearCart() {
         orders = []
     }
