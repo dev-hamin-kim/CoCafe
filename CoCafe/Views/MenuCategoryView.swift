@@ -20,9 +20,23 @@ class MenuCategoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        configureUI()
     }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureUI() {
+        // 오토레이아웃 설정
+        menuSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(menuSegmentedControl)
+        
+        NSLayoutConstraint.activate([
+            menuSegmentedControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10), // 상단에서 10pt 아래
+            menuSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            menuSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            menuSegmentedControl.heightAnchor.constraint(equalToConstant: 30)
+        ])
     }
 }
