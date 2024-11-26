@@ -45,7 +45,7 @@ final class CartTableViewCell: UITableViewCell {
         stview.axis = .horizontal
         stview.distribution = .fillEqually
         stview.alignment = .fill
-        stview.spacing = 3
+        stview.spacing = 0
         return stview
     }()
     
