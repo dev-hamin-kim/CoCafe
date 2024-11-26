@@ -31,21 +31,21 @@ final class CartTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var countStackView: UIStackView = {
-        let stview = UIStackView()
-        stview.axis = .horizontal
-        stview.distribution = .fillEqually
-        stview.alignment = .fill
-        stview.spacing = 3
-        return stview
-    }()
-    
     private let plusButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("+", for: .normal)
         button.setTitleColor(.conanBrown, for: .normal)
         return button
+    }()
+    
+    private lazy var countStackView: UIStackView = {
+        let stview = UIStackView(arrangedSubviews: [minusButton, countLabel, plusButton])
+        stview.axis = .horizontal
+        stview.distribution = .fillEqually
+        stview.alignment = .fill
+        stview.spacing = 3
+        return stview
     }()
     
     private let priceLabel: UILabel = {
