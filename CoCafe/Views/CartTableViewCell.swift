@@ -65,7 +65,7 @@ final class CartTableViewCell: UITableViewCell {
     }()
     
     private lazy var cellStackView: UIStackView = {
-        let stview = UIStackView()
+        let stview = UIStackView(arrangedSubviews: [menuNameLabel, countStackView, priceLabel, deleteButton])
         stview.axis = .horizontal
         stview.distribution = .fillEqually
         stview.alignment = .fill
