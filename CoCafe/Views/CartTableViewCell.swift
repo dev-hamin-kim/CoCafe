@@ -13,4 +13,11 @@ final class CartTableViewCell: UITableViewCell {
         label.text = "아이스 아메리카노"
         return label
     }()
+    
+    let minusButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("-", for: .normal)
+        return button
+    }()
 }
