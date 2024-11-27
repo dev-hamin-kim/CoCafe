@@ -11,6 +11,7 @@ class MenuCategoryView: UIView {
     
     private lazy var menuSegmentedControl: UISegmentedControl = {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
+        //let items: [String] = Category.allCases.map { $0.rawValue } // model data에서 받오기
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         control.selectedSegmentTintColor = UIColor(named: "MainColor")
