@@ -11,6 +11,8 @@ protocol CartTableViewCellDelegate: AnyObject {
 }
 
 final class CartTableViewCell: UITableViewCell {
+    weak var delegate: CartTableViewCellDelegate?
+    
     private var order: Order? {
         didSet { countLabel.text = order?.count.description }
     }
