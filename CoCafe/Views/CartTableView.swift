@@ -49,6 +49,7 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableViewCell
         cell.configureCellData(order: orders[indexPath.row])
         cell.selectionStyle = .none
+        cell.delegate = self
         return cell
     }
 }
