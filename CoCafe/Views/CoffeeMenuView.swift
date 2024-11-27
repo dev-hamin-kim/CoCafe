@@ -11,7 +11,7 @@ class CoffeeMenuView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none // 밑줄 제거
+        tableView.separatorStyle = .none // 셀 밑줄 제거
         return tableView
     }()
 

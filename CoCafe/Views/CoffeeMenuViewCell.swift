@@ -10,6 +10,7 @@ import UIKit
 class CoffeeMenuViewCell: UITableViewCell {
     static let identifier = "CoffeeMenuViewCell"
 
+    // 메뉴 이미지
     private let menuImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -18,6 +19,7 @@ class CoffeeMenuViewCell: UITableViewCell {
         return imageView
     }()
 
+    // 메뉴 이름
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -25,12 +27,31 @@ class CoffeeMenuViewCell: UITableViewCell {
         return label
     }()
 
+    // 메뉴 가격
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+
+    // 수직 스택뷰 (nameLabel + priceLabel)
+    private lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, priceLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        return stackView
+    }()
+
+    // 수평 스택뷰 (menuImageView + verticalStackView)
+    private lazy var horizontalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [menuImageView, verticalStackView])
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,24 +64,19 @@ class CoffeeMenuViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
-        contentView.addSubview(menuImageView)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(priceLabel)
+        // 수평 스택뷰만 추가
+        contentView.addSubview(horizontalStackView)
 
         NSLayoutConstraint.activate([
-            menuImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            menuImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // 스택뷰의 전체 레이아웃만 지정
+            horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            
+            // 이미지뷰의 크기 지정
             menuImageView.widthAnchor.constraint(equalToConstant: 60),
-            menuImageView.heightAnchor.constraint(equalToConstant: 60),
-
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            nameLabel.leadingAnchor.constraint(equalTo: menuImageView.trailingAnchor, constant: 10),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-
-            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            priceLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            menuImageView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 
