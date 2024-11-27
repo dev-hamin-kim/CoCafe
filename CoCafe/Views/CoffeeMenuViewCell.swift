@@ -7,12 +7,6 @@
 
 import UIKit
 
-struct Menu {
-    let name: String
-    let price: String
-    let imageName: String
-}
-
 class CoffeeMenuViewCell: UITableViewCell {
     static let identifier = "CoffeeMenuViewCell"
 
@@ -70,9 +64,9 @@ class CoffeeMenuViewCell: UITableViewCell {
         ])
     }
 
-    func configure(with menu: Menu) {
-        menuImageView.image = UIImage(named: menu.imageName)
-        nameLabel.text = menu.name
-        priceLabel.text = menu.price
+    func configure(with item: Item) {
+        menuImageView.image = UIImage(named: item.icon)
+        nameLabel.text = item.name
+        priceLabel.text = "\(item.price)원"
     }
 }

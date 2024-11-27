@@ -10,12 +10,7 @@ import UIKit
 class CoffeeMenuViewController: UIViewController {
     private let menuView = CoffeeMenuView()
 
-    // 메뉴 데이터
-    private let menuItems: [Menu] = [
-        Menu(name: "코난 라떼", price: "5,000", imageName: "conan_latte"),
-        Menu(name: "아이스 아메리카노", price: "4,500", imageName: "iced_americano"),
-        Menu(name: "아이스 라떼", price: "4,900", imageName: "iced_latte")
-    ]
+    private var filteredMenuItems: [Item] = Item.MenuList.filter { $0.category == .Coffee }
 
     override func loadView() {
         self.view = menuView
@@ -35,15 +30,15 @@ class CoffeeMenuViewController: UIViewController {
 
 extension CoffeeMenuViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
+        return filteredMenuItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CoffeeMenuViewCell.identifier, for: indexPath) as? CoffeeMenuViewCell else {
             return UITableViewCell()
         }
-        let menu = menuItems[indexPath.row]
-        cell.configure(with: menu)
+        let item = filteredMenuItems[indexPath.row]
+        cell.configure(with: item)
         return cell
     }
 
