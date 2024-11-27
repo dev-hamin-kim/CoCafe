@@ -29,7 +29,7 @@ struct Item: Equatable {
         Item(name: "코난 라떼", category: .Coffee, price: 5000, icon: "ConanLatte"),
         
         Item(name: "초코 아이스크림 라떼", category: .NonCoffee, price: 5500, icon: "ChocolateIcecreamLatte"),
-        Item(name: "스트로베리 아이스크림 라떼", category: .NonCoffee, price: 5500, icon: "StrawberryIcecreamLatte"),
+        Item(name: "딸기 아이스크림 라떼", category: .NonCoffee, price: 5500, icon: "StrawberryIcecreamLatte"),
         Item(name: "캐모마일 티", category: .NonCoffee, price: 4500, icon: "IcedChamomileTea"),
         
         Item(name: "크로칸 슈", category: .Dessert, price: 5000, icon: "CroquantChoux"),
@@ -37,6 +37,8 @@ struct Item: Equatable {
     ]
 }
 
+// Int 4900을 String "4,900"으로 포맷해주는 extension입니다.
+// 변환이 필요한 Int형 자료 뒤에 .withComma를 붙여 사용하시면 됩니다.
 extension Int {
 
     private static var commaFormatter: NumberFormatter = {
