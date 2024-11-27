@@ -23,7 +23,7 @@ final class CartTotalView: UIView {
     private let totalCountLabel: UILabel = {
         let label = UILabel()
         label.text = "총 1개 "
-        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .right
         label.textColor = .white
         return label
@@ -33,7 +33,7 @@ final class CartTotalView: UIView {
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "금액: 0원"
-        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
