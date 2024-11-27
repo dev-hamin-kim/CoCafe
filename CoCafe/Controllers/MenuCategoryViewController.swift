@@ -20,3 +20,8 @@ class MenuCategoryViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+@available(iOS 17.0, *)
+#Preview {
+    MenuCategoryViewController()
+}
