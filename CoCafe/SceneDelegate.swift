@@ -17,7 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        window.rootViewController = ViewController()
+        //window.rootViewController = ViewController()
+        window.rootViewController = CoffeeMenuViewController()
+      // 'CoffeeMenuViewController'를 rootViewController로 설정
+        window.makeKeyAndVisible()
+        //window.rootViewController = MenuCategoryViewController()
+      feature/menuCategoryView
         window.makeKeyAndVisible()
         
         self.window = window
