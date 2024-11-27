@@ -8,7 +8,7 @@ import UIKit
 
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
-    let orders = Item.MenuList.map { item in
+    var orders = Item.MenuList.map { item in
         Order(item: item, count: Int.random(in: 1 ... 20))
     }
     
@@ -50,5 +50,13 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
         cell.configureCellData(order: orders[indexPath.row])
         cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension CartTableView: CartTableViewCellDelegate {
+    func deleteCartTableViewCell(cell: CartTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        orders.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
     }
 }
