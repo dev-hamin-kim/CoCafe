@@ -15,6 +15,8 @@ final class CartTotalView: UIView {
         view.spacing = 40
         view.alignment = .fill
         view.distribution = .fill
+        view.isLayoutMarginsRelativeArrangement = true
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20)
         return view
     }()
     // 총 개수를 표시하는 레이블
