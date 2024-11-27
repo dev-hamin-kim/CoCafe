@@ -6,6 +6,10 @@
 //
 import UIKit
 
+protocol CartTableViewCellDelegate: AnyObject {
+    func deleteCartTableViewCell(cell: CartTableViewCell)
+}
+
 final class CartTableViewCell: UITableViewCell {
     private var order: Order? {
         didSet { countLabel.text = order?.count.description }
