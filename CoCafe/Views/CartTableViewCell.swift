@@ -86,6 +86,7 @@ final class CartTableViewCell: UITableViewCell {
         configureConstraints()
         
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -118,6 +119,10 @@ final class CartTableViewCell: UITableViewCell {
     
     @objc private func minusButtonTapped() {
         self.order?.subtractOne()
+    }
+    
+    @objc private func plusButtonTapped() {
+        self.order?.addOne()
     }
 }
 
