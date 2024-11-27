@@ -8,11 +8,21 @@
 import UIKit
 
 class CoffeeMenuViewController: UIViewController {
-    private let coffeeMenuView = CoffeeMenuView() // UI를 구성하는 커스텀 UIView
-    private var menuItems: [Item] = Item.MenuList.filter { $0.category == .Coffee } // Coffee 데이터 필터링
+    private let menuView = CoffeeMenuView()
+    private var menuItems: [Item]
+
+    // 기본 생성자에서 Coffee 데이터를 필터링하도록 수정
+    init(menuItems: [Item] = Item.MenuList.filter { $0.category == .Coffee }) {
+        self.menuItems = menuItems
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
-        self.view = coffeeMenuView // CoffeeMenuView를 전체 뷰로 설정
+        self.view = menuView
     }
 
     override func viewDidLoad() {
@@ -21,9 +31,9 @@ class CoffeeMenuViewController: UIViewController {
     }
 
     private func setupTableView() {
-        coffeeMenuView.tableView.dataSource = self
-        coffeeMenuView.tableView.delegate = self
-        coffeeMenuView.tableView.register(CoffeeMenuViewCell.self, forCellReuseIdentifier: CoffeeMenuViewCell.identifier)
+        menuView.tableView.dataSource = self
+        menuView.tableView.delegate = self
+        menuView.tableView.register(CoffeeMenuViewCell.self, forCellReuseIdentifier: CoffeeMenuViewCell.identifier)
     }
 }
 
@@ -37,7 +47,7 @@ extension CoffeeMenuViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         let item = menuItems[indexPath.row]
-        cell.configure(with: item) // 데이터 전달
+        cell.configure(with: item)
         return cell
     }
 
