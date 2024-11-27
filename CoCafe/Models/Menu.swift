@@ -7,8 +7,20 @@
 
 import Foundation
 
-enum Category {
-    case Coffee, NonCoffee, Dessert
+/// 음료의 종류를 enum으로 선언해놓은 Category입니다.
+///
+/// Category의 모든 case들을 [String]으로 받으시려면 아래의 코드를 사용하시면 됩니다.
+///
+///     let item: [String] = Category.allCases.map { $0.rawValue }
+///
+/// 결과는 아래와 같습니다.
+///
+///     ["Coffee", "Non-Coffee", "Dessert"]
+///
+enum Category: String, CaseIterable {
+    case Coffee
+    case NonCoffee = "Non-Coffee"
+    case Dessert
 }
 
 struct Item: Equatable {
