@@ -84,6 +84,8 @@ final class CartTableViewCell: UITableViewCell {
         
         configureStackViews()
         configureConstraints()
+        
+        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -112,6 +114,10 @@ final class CartTableViewCell: UITableViewCell {
         self.menuNameLabel.text = order.item.name
         self.countLabel.text = order.count.description
         self.priceLabel.text = order.item.price.withComma
+    }
+    
+    @objc private func minusButtonTapped() {
+        self.order?.subtractOne()
     }
 }
 
