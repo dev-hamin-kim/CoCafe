@@ -7,17 +7,8 @@
 import UIKit
 
 class TopLogoView: UIView {
-    private let logoImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Logo"))
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private let conanFaceImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "ConanLogo"))
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private lazy var logoImageView = createImageView(named: "Logo")
+    private lazy var conanFaceImageView = createImageView(named: "ConanLogo")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,24 +22,24 @@ class TopLogoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func createImageView(named imageName: String) -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: imageName))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }
+    
     func configureUI() {
-        // 오토레이아웃 설정
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(logoImageView)
-        
-        conanFaceImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(conanFaceImageView)
+        [logoImageView, conanFaceImageView].forEach { addSubview($0) }
         
         NSLayoutConstraint.activate([
-            logoImageView.centerXAnchor.constraint(equalTo:self.centerXAnchor),
+            logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             logoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            //logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            //logoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 40),
             logoImageView.widthAnchor.constraint(equalToConstant: 150),
             
-            conanFaceImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            conanFaceImageView.trailingAnchor.constraint(equalTo: logoImageView.leadingAnchor, constant: 5),
+            conanFaceImageView.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor),
+            conanFaceImageView.trailingAnchor.constraint(equalTo: logoImageView.leadingAnchor, constant: -5),
             conanFaceImageView.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
