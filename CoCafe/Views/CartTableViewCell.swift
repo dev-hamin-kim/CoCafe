@@ -7,6 +7,10 @@
 import UIKit
 
 final class CartTableViewCell: UITableViewCell {
+    private var order: Order? {
+        didSet { countLabel.text = order?.count.description }
+    }
+    
     private let menuNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -104,6 +108,7 @@ final class CartTableViewCell: UITableViewCell {
     }
     
     func configureCellData(order: Order) {
+        self.order = order
         self.menuNameLabel.text = order.item.name
         self.countLabel.text = order.count.description
         self.priceLabel.text = order.item.price.withComma
@@ -113,9 +118,4 @@ final class CartTableViewCell: UITableViewCell {
 extension UIColor {
     static let conanBrown = UIColor(red: 108/255, green: 77/255, blue: 30/255, alpha: 1.0)
     static let conanRibbonRed = UIColor(red: 225/255, green: 66/255, blue: 66/255, alpha: 1.0)
-}
-
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
 }
