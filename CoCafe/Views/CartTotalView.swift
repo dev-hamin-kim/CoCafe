@@ -6,13 +6,14 @@
 //
 import UIKit
 final class CartTotalView: UIView {
+    let cartTableView = CartTableView()
     // 브라운 배경을 넣어주는 뷰 추가
     private lazy var infoContainerStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [totalCountLabel, totalPriceLabel])
         view.backgroundColor = .conanBrown // 전체 줄의 배경색 설정
         view.axis = .horizontal
         view.spacing = 40
-        view.alignment = .trailing
+        view.alignment = .fill
         view.distribution = .fill
         return view
     }()
@@ -69,6 +70,7 @@ final class CartTotalView: UIView {
     // 초기화 메서드
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupLayout()
     }
     
@@ -81,18 +83,25 @@ final class CartTotalView: UIView {
     private func setupLayout() {
         // 서브뷰 추가
         addSubview(infoContainerStackView)
+        addSubview(cartTableView)
         addSubview(lastContainerView)
         
         infoContainerStackView.translatesAutoresizingMaskIntoConstraints = false
+        cartTableView.translatesAutoresizingMaskIntoConstraints = false
         lastContainerView.translatesAutoresizingMaskIntoConstraints = false
         // 레이아웃 제약 설정
         NSLayoutConstraint.activate([
             
             // 총 개수와 총 금액을 감싸는 컨테이너 스택 뷰
-            infoContainerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            infoContainerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            infoContainerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            infoContainerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             infoContainerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -280),
             infoContainerStackView.heightAnchor.constraint(equalToConstant: 58),
+            
+            cartTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            cartTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            cartTableView.bottomAnchor.constraint(equalTo: lastContainerView.topAnchor, constant: -10),
+            cartTableView.topAnchor.constraint(equalTo: infoContainerStackView.bottomAnchor, constant: 10),
             
             // 전체 취소와 결제하기를 감싸는 스택뷰
             lastContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
@@ -118,8 +127,8 @@ final class CartTotalView: UIView {
     }
 }
 
-
 @available(iOS 17.0, *)
 #Preview {
     ViewController()
 }
+
