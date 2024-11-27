@@ -93,6 +93,7 @@ final class CartTableViewCell: UITableViewCell {
         
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -129,6 +130,11 @@ final class CartTableViewCell: UITableViewCell {
     
     @objc private func plusButtonTapped() {
         self.order?.addOne()
+    }
+    
+    @objc private func deleteButtonTapped() {
+        delegate?.deleteCartTableViewCell(cell: self)
+        // order 인스턴스 삭제하는 작업 필요
     }
 }
 
