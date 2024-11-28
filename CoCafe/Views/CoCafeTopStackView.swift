@@ -7,6 +7,7 @@
 
 import UIKit
 
+//stackView로 카테고리와 메뉴 뷰 병합
 class CoCafeTopStackView: UIView {
     var menuCategoryView: MenuCategoryView!
     var topLogoView: TopLogoView!
@@ -30,9 +31,9 @@ class CoCafeTopStackView: UIView {
 
         stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView])
         stackView.axis = .vertical
-        stackView.spacing = 10      // 뷰 사이의 간격
+        stackView.spacing = 10 // 뷰 사이의 간격
         //stackView.alignment = .fill // 자식 뷰 가로 크기 채움
-        stackView.distribution = .fillEqually// 자식 뷰 비율에 따라 채우기
+        stackView.distribution = .fillEqually
         stackView.heightAnchor.constraint(equalToConstant: 500).isActive = true
 
         stackView.translatesAutoresizingMaskIntoConstraints = false

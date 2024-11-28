@@ -62,23 +62,6 @@ class MenuCategoryView: UIView {
     }
     
     func configureUI() {
-        //        menuSegmentedControl.addAction(UIAction { [weak self] action in
-        //            guard let sender = action.sender as? UISegmentedControl else { return }
-        //            
-        //            print("선택된 카테고리 인덱스: \(sender.selectedSegmentIndex)")
-        //            
-        //            switch sender.selectedSegmentIndex {
-        //            case 0:
-        //                print("Coffee 선택됨")
-        //            case 1:
-        //                print("Non-Coffee 선택됨")
-        //            case 2:
-        //                print("Dessert 선택됨")
-        //            default:
-        //                break
-        //            }
-        //        }, for: .valueChanged)
-        
         // 오토레이아웃 설정
         menuSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         addSubview(menuSegmentedControl)

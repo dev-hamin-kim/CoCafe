@@ -8,8 +8,6 @@
 import UIKit
 
 class CoffeeMenuViewCell: UITableViewCell {
-    //static let identifier = "CoffeeMenuViewCell"
-
     private let menuImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

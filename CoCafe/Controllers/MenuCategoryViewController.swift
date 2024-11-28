@@ -9,8 +9,8 @@ import UIKit
 
 class MenuCategoryViewController: UIViewController {
 
-    //var stackView: CoCafeTopStackView!
-    var coCafeTopView: CoCafeTopView!
+    //var stackView: CoCafeTopStackView! //스택뷰로 View 병합
+    var coCafeTopView: CoCafeTopView! //addSubView로 View 병합
     
     override func viewDidLoad() {
         super.viewDidLoad()

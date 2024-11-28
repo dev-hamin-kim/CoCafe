@@ -6,6 +6,7 @@
 //
 import UIKit
 
+//카테고리, 메뉴 뷰 addsubView를 이용하여 병합
 class CoCafeTopView: UIView {
     var topLogoView: TopLogoView!
     var menuCategoryView: MenuCategoryView!
