@@ -6,7 +6,7 @@
 //
 import UIKit
 protocol CartTotalViewDelegate: AnyObject {
-    func showAlertCartTotalView()
+    func showCancelAlertCartTotalView()
 }
 
 final class CartTotalView: UIView {
@@ -122,7 +122,7 @@ final class CartTotalView: UIView {
     }
     
     @objc private func cancelButtonTapped() {
-        delegate?.showAlertCartTotalView()
+        delegate?.showCancelAlertCartTotalView()
     }
 }
 
@@ -134,7 +134,7 @@ extension CartTotalView: Observer {
 }
 
 extension MainViewController: CartTotalViewDelegate {
-    func showAlertCartTotalView() {
+    func showCancelAlertCartTotalView() {
         let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
         let success = UIAlertAction(title: "확인", style: .default) { action in
             Cart.shared.clearCart()
