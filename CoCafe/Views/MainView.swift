@@ -13,7 +13,16 @@ final class MainView: UIView {
     private let topLogoView = TopLogoView()
     private let coffeeMenuView = CoffeeMenuView()
     private let cartTotalView = CartTotalView()
-    var stackView: UIStackView!
+    
+    private lazy var stackView = {
+        let stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView, cartTotalView])
+        stackView.axis = .vertical
+        stackView.spacing = 10 // 뷰 사이의 간격
+        stackView.alignment = .fill // 자식 뷰 가로 크기 채움
+        stackView.distribution = .fill
+        return stackView
+    }()
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
