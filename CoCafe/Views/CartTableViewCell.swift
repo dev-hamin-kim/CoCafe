@@ -143,7 +143,6 @@ final class CartTableViewCell: UITableViewCell {
     
     @objc private func deleteButtonTapped() {
         delegate?.deleteCartTableViewCell(cell: self)
-        // order 인스턴스 삭제하는 작업 필요
     }
 }
 
