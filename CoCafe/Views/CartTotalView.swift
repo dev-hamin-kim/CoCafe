@@ -12,11 +12,14 @@ protocol CartTotalViewDelegate: AnyObject {
 final class CartTotalView: UIView {
     let cartTableView = CartTableView()
     weak var delegate: CartTotalViewDelegate?
-    var cart: Cart? {
+    var cart = Cart(orders: []) {
         didSet{
-            totalCountLabel.text = "\(cart?.totalQuantity() ?? 0)개"
-            totalPriceLabel.text = "총 금액: \(cart?.totalPrice().withComma ?? "0")원"
+            totalCountLabel.text = "총 \(cart.totalQuantity() ?? 0)개"
+            totalPriceLabel.text = "금액: \(cart.totalPrice().withComma ?? "0")원"
+            cartTableView.orders = cart.orders
+            print(cart.orders)
         }
+        
     }
     
     // 브라운 배경을 넣어주는 뷰 추가

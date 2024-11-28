@@ -77,7 +77,7 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = menuItems[indexPath.row]
         delegate?.didUpdateItem(selectedItem)
-        
+        print("selecte item: \(selectedItem)")
         // 디버깅용 출력
         //print("Current Orders: \(cart.orders.map { "\($0.item.name) - \($0.count)" })")
     }

@@ -8,8 +8,8 @@ import UIKit
 
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
-    var orders = Item.MenuList.map { item in
-        Order(item: item, count: Int.random(in: 1 ... 20))
+    var orders = [Order]() {
+        didSet { print(orders)}
     }
     
     override init(frame: CGRect) {
