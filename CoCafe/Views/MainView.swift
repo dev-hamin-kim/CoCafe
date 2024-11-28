@@ -23,7 +23,6 @@ final class MainView: UIView {
         return stackView
     }()
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -38,13 +37,6 @@ final class MainView: UIView {
         
         topLogoView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         menuCategoryView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
-        stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView])
-        stackView.axis = .vertical
-        stackView.spacing = 10 // 뷰 사이의 간격
-        stackView.alignment = .fill // 자식 뷰 가로 크기 채움
-        stackView.distribution = .fill
-
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
 
