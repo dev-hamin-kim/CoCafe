@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol MenuCategoryViewDelegate: AnyObject {
+    func categoryChanged(to category: Category)
+}
+
 class MenuCategoryView: UIView {
+    weak var delegate: MenuCategoryViewDelegate?
     
     private lazy var menuSegmentedControl: UISegmentedControl = {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
+        //let items = ["Coffee", "NonCoffee", "Dessert"]
         //let items: [String] = Category.allCases.map { $0.rawValue } // model data에서 받오기
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
@@ -27,7 +33,7 @@ class MenuCategoryView: UIView {
         
         // 흰색으로 배경 설정해도 적용되지 않음
         //control.backgroundColor = .white
-                
+        
         control.setTitleTextAttributes(normalAttributes, for: .normal)
         control.setTitleTextAttributes(selectedAttributes, for: .selected)
         
@@ -62,6 +68,7 @@ class MenuCategoryView: UIView {
     }
     
     func configureUI() {
+        menuSegmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         // 오토레이아웃 설정
         menuSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         addSubview(menuSegmentedControl)
@@ -72,5 +79,21 @@ class MenuCategoryView: UIView {
             menuSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             menuSegmentedControl.heightAnchor.constraint(equalToConstant: 45)
         ])
+    }
+    
+    @objc private func segmentChanged(_ sender: UISegmentedControl) {
+        let selectedCategory: Category
+        switch sender.selectedSegmentIndex {
+        case 0:
+            selectedCategory = .Coffee
+        case 1:
+            selectedCategory = .NonCoffee
+        case 2:
+            selectedCategory = .Dessert
+        default:
+            return
+        }
+        //print("Delegate: \(delegate)") // delegate가 제대로 설정되었는지 확인
+        delegate?.categoryChanged(to: selectedCategory)
     }
 }

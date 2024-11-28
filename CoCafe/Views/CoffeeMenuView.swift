@@ -8,7 +8,7 @@
 import UIKit
 
 class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
-    private var menuItems: [Item] = Item.MenuList.filter { $0.category == .Coffee }
+    var menuItems: [Item] = []
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -46,6 +46,11 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         ])
     }
     
+    func updateMenuItems(for category: Category) { // 카테고리 전달
+        menuItems = Item.MenuList.filter { $0.category == category }
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
@@ -56,10 +61,10 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         }
         
         let item = menuItems[indexPath.row]
-        cell.configure(with: item)
+        cell.configure(with: item)  // 커스텀 셀을 사용할 경우
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
