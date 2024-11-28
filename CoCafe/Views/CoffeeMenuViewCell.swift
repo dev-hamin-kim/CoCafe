@@ -10,7 +10,7 @@ import UIKit
 class CoffeeMenuViewCell: UITableViewCell {
     private let menuImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
