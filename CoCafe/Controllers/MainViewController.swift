@@ -40,8 +40,6 @@ extension MainViewController: MenuCategoryViewDelegate {
 extension MainViewController: CoffeeMenuViewDelegate {
     func didUpdateItem(_ item: Item) {
         mainView.cartTotalView.cart.addToCart(item: item)
-        print(#function)
-        print(item)
     }
 }
 

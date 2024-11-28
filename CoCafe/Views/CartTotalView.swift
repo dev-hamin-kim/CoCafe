@@ -14,10 +14,9 @@ final class CartTotalView: UIView {
     weak var delegate: CartTotalViewDelegate?
     var cart = Cart(orders: []) {
         didSet{
-            totalCountLabel.text = "총 \(cart.totalQuantity() ?? 0)개"
-            totalPriceLabel.text = "금액: \(cart.totalPrice().withComma ?? "0")원"
+            totalCountLabel.text = "총 \(cart.totalQuantity())개"
+            totalPriceLabel.text = "금액: \(cart.totalPrice().withComma)원"
             cartTableView.orders = cart.orders
-            print(cart.orders)
         }
         
     }
@@ -37,7 +36,7 @@ final class CartTotalView: UIView {
     // 총 개수를 표시하는 레이블
     private let totalCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "총 1개 "
+        label.text = "총 0개 "
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .right
         label.textColor = .white
