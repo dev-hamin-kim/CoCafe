@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, CoffeeMenuViewDelegate {
+class MainViewController: UIViewController, MenuCategoryViewDelegate, CoffeeMenuViewDelegate {
     
     var stackView: CoCafeTopStackView! //스택뷰로 View 병합
     var coCafeTopView: CoCafeTopView! //addSubView로 View 병합
@@ -58,7 +58,7 @@ class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, Co
     }
 }
 
-//@available(iOS 17.0, *)
-//#Preview {
-//    MenuCategoryViewController()
-//}
+@available(iOS 17.0, *)
+#Preview {
+    MainViewController()
+}
