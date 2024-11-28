@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        window.rootViewController = ViewController()
+        //window.rootViewController = ViewController()
+        window.rootViewController = MenuCategoryViewController()
         window.makeKeyAndVisible()
         
         self.window = window
