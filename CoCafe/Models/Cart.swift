@@ -54,7 +54,6 @@ class Cart {
         let hasSameItem = orders.contains(where: { $0.item == item })
         if !hasSameItem {
             let newOrder = Order(item: item, count: 1)
-            newOrder.delegate = self
             orders.append(newOrder)
         } else {
             for index in 0..<orders.count {
@@ -75,15 +74,9 @@ class Cart {
         observers.removeAll { $0 === observer }
     }
     
-    private func notifyObservers() {
+    func notifyObservers() {
         for observer in observers {
             observer.cartDidUpdate()
         }
-    }
-}
-
-extension Cart: OrderDelegate {
-    func orderDidChange(order: Order) {
-        notifyObservers()
     }
 }

@@ -7,18 +7,13 @@
 
 import Foundation
 
-protocol OrderDelegate: AnyObject {
-    func orderDidChange(order: Order)
-}
-
 class Order {
     var item: Item
     var count = 1 {
         didSet {
-            delegate?.orderDidChange(order: self)
+            Cart.shared.notifyObservers()
         }
     }
-    weak var delegate: OrderDelegate?
     
     init(item: Item, count: Int) {
         self.item = item
