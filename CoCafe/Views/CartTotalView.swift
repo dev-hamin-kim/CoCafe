@@ -12,20 +12,10 @@ protocol CartTotalViewDelegate: AnyObject {
 final class CartTotalView: UIView {
     let cartTableView = CartTableView()
     weak var delegate: CartTotalViewDelegate?
-    var cart = Cart(orders: []) {
-        didSet{
-            totalCountLabel.text = "총 \(cart.totalQuantity())개"
-            totalPriceLabel.text = "금액: \(cart.totalPrice().withComma)원"
-            // 1. 카트 토탈 뷰 -> 카트 테이블 뷰로 카트 인스턴스 전달
-            cartTableView.cart = cart
-        }
-        
-    }
     
-    // 브라운 배경을 넣어주는 뷰 추가
     private lazy var infoContainerStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [totalCountLabel, totalPriceLabel])
-        view.backgroundColor = .conanBrown // 전체 줄의 배경색 설정
+        view.backgroundColor = .conanBrown
         view.axis = .horizontal
         view.spacing = 40
         view.alignment = .fill
@@ -34,7 +24,7 @@ final class CartTotalView: UIView {
         view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20)
         return view
     }()
-    // 총 개수를 표시하는 레이블
+    
     private let totalCountLabel: UILabel = {
         let label = UILabel()
         label.text = "총 0개 "
@@ -44,7 +34,6 @@ final class CartTotalView: UIView {
         return label
     }()
     
-    // 총 금액을 표시하는 레이블
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "금액: 0원"
@@ -55,7 +44,6 @@ final class CartTotalView: UIView {
         return label
     }()
     
-    // 전체취소 버튼 UI
     private let cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("전체 취소", for: .normal)
@@ -65,7 +53,7 @@ final class CartTotalView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return button
     }()
-    // 결제하기 버튼
+    
     private let payButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("결제하기", for: .normal)
@@ -85,22 +73,23 @@ final class CartTotalView: UIView {
         return view2
     }()
     
-    // 초기화 메서드
     override init(frame: CGRect) {
         super.init(frame: frame)
-        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
+        Cart.shared.addObserver(self)
         setupLayout()
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+    }
+    
+    deinit {
+        Cart.shared.removeObserver(self)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupLayout()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    // 레이아웃 설정
     private func setupLayout() {
-        // 서브뷰 추가
         addSubview(infoContainerStackView)
         addSubview(cartTableView)
         addSubview(lastContainerView)
@@ -117,6 +106,8 @@ final class CartTotalView: UIView {
             infoContainerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -280),
             infoContainerStackView.heightAnchor.constraint(equalToConstant: 58),
             
+            totalPriceLabel.widthAnchor.constraint(equalToConstant: 140),
+            
             cartTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             cartTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             cartTableView.bottomAnchor.constraint(equalTo: lastContainerView.topAnchor, constant: -10),
@@ -130,36 +121,25 @@ final class CartTotalView: UIView {
         ])
     }
     
-    // 버튼 액션을 외부에서 추가할 수 있도록 메서드 제공
-    func setCancelAction(target: Any?, action: Selector) {
-        cancelButton.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    
-    func setPayAction(target: Any?, action: Selector) {
-        payButton.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    // 총 금액과 개수를 업데이트
-    func updateTotalInfo(totalquantity: Int, totalprice: Int) {
-        totalCountLabel.text = "\(totalquantity)개"
-        totalPriceLabel.text = "총 금액: \(totalprice)원"
-    }
-    
     @objc private func cancelButtonTapped() {
         delegate?.showAlertCartTotalView()
-    }      // order 인스턴스 삭제하는 작업 필요
+    }
+}
+
+extension CartTotalView: Observer {
+    func cartDidUpdate() {
+        totalCountLabel.text = "총 \(Cart.shared.totalQuantity())개"
+        totalPriceLabel.text = "금액: \(Cart.shared.totalPrice().withComma)원"
+    }
 }
 
 extension MainViewController: CartTotalViewDelegate {
     func showAlertCartTotalView() {
         let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
-        let success = UIAlertAction(title: "확인", style: .default) { [weak self] action in
-            print("확인 버튼이 눌렸습니다.")
-            self!.mainView.cartTotalView.cart.clearCart()
+        let success = UIAlertAction(title: "확인", style: .default) { action in
+            Cart.shared.clearCart()
         }
         let cancel = UIAlertAction(title: "취소", style: .default) { cancel in
-            print("취소 버튼이 눌렸습니다.")
         }
         
         // 뷰 위에 올리는 역할.
