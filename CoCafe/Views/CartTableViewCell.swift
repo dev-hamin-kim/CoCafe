@@ -14,7 +14,10 @@ final class CartTableViewCell: UITableViewCell {
     weak var delegate: CartTableViewCellDelegate?
     
     private var order: Order? {
-        didSet { countLabel.text = order?.count.description }
+        didSet {
+            countLabel.text = order?.count.description
+            priceLabel.text = (order!.count * (order?.item.price)!).withComma
+        }
     }
     
     private let menuNameLabel: UILabel = {
@@ -114,7 +117,7 @@ final class CartTableViewCell: UITableViewCell {
             countLabel.widthAnchor.constraint(equalToConstant: 25),
             plusButton.widthAnchor.constraint(equalToConstant: 10),
             
-            priceLabel.widthAnchor.constraint(equalToConstant: 50),
+            priceLabel.widthAnchor.constraint(equalToConstant: 60),
             
             cellStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 26),
             cellStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -18),
@@ -127,7 +130,7 @@ final class CartTableViewCell: UITableViewCell {
         self.order = order
         self.menuNameLabel.text = order.item.name
         self.countLabel.text = order.count.description
-        self.priceLabel.text = order.item.price.withComma
+        self.priceLabel.text = (order.count * (order.item.price)).withComma
     }
     
     @objc private func minusButtonTapped() {
