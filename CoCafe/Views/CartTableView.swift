@@ -9,7 +9,7 @@ import UIKit
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
     var orders = [Order]() {
-        didSet { print(orders)}
+        didSet { tableView.reloadData() }
     }
     
     override init(frame: CGRect) {
