@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CoffeeMenuViewDelegate: AnyObject {
+    func didUpdateOrders(_ orders: [Order])
+}
+
 class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
+    weak var delegate: CoffeeMenuViewDelegate?
+
     var menuItems: [Item] = []
     var orders: [Order] = []  // 주문 목록 저장
     
@@ -74,7 +80,7 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         } else {
             orders.append(Order(item: selectedItem))  // 새로운 주문 추가
         }
-        
+        delegate?.didUpdateOrders(orders)  // 변경된 orders 전달
         // 디버깅용 출력
         //print("Current Orders: \(orders.map { "\($0.item.name) - \($0.count)" })")
     }
