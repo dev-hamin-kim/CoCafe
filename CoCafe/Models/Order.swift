@@ -16,7 +16,7 @@ struct Order {
     }
     
     mutating func subtractOne() {
-        guard count > 2 else { return }
+        guard count > 1 else { return }
         count -= 1
     }
 
