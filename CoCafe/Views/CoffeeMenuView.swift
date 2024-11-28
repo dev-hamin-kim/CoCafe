@@ -9,6 +9,7 @@ import UIKit
 
 class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
     var menuItems: [Item] = []
+    var orders: [Order] = []  // 주문 목록 저장
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -17,7 +18,6 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         return tableView
     }()
     
-    // 기본 생성자에서 Coffee 데이터를 필터링하도록 수정
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupTableView()
@@ -63,6 +63,20 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         let item = menuItems[indexPath.row]
         cell.configure(with: item)  // 커스텀 셀을 사용할 경우
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = menuItems[indexPath.row]
+        
+        // 이미 주문에 있는 항목인지 확인
+        if let index = orders.firstIndex(where: { $0.item.name == selectedItem.name }) {
+            orders[index].addOne()  // 수량 증가
+        } else {
+            orders.append(Order(item: selectedItem))  // 새로운 주문 추가
+        }
+        
+        // 디버깅용 출력
+        //print("Current Orders: \(orders.map { "\($0.item.name) - \($0.count)" })")
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
