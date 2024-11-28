@@ -12,7 +12,7 @@ final class MainView: UIView {
     let menuCategoryView = MenuCategoryView()
     private let topLogoView = TopLogoView()
     let coffeeMenuView = CoffeeMenuView()
-    private let cartTotalView = CartTotalView()
+    let cartTotalView = CartTotalView()
     
     private lazy var stackView = {
         let stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView, cartTotalView])

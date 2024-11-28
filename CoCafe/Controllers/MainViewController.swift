@@ -26,6 +26,8 @@ final class MainViewController: UIViewController {
         mainView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정
         
         mainView.coffeeMenuView.delegate = self  // delegate 설정
+        
+        mainView.cartTotalView.delegate = self
     }
 }
 
@@ -37,8 +39,7 @@ extension MainViewController: MenuCategoryViewDelegate {
 
 extension MainViewController: CoffeeMenuViewDelegate {
     func didUpdateItem(_ item: Item) {
-        //cart.addToCart(item: item)
-        print(item)
+        mainView.cartTotalView.cart?.addToCart(item: item)
     }
 }
 

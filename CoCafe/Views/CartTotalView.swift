@@ -150,12 +150,11 @@ final class CartTotalView: UIView {
 }
 
 extension MainViewController: CartTotalViewDelegate {
-   
-
     func showAlertCartTotalView() {
         let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
         let success = UIAlertAction(title: "확인", style: .default) { action in
             print("확인 버튼이 눌렸습니다.")
+            // 전체 삭제 추가 필요
         }
         let cancel = UIAlertAction(title: "취소", style: .default) { cancel in
             print("취소 버튼이 눌렸습니다.")
