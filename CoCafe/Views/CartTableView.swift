@@ -8,14 +8,16 @@ import UIKit
 
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
-    var cart = Cart(orders: []) {
-        didSet { tableView.reloadData() }
-    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureTableView()
         configureConstraints()
+        Cart.shared.addObserver(self)
+    }
+    
+    deinit {
+        Cart.shared.removeObserver(self) // 옵저버 제거
     }
     
     required init?(coder: NSCoder) {
@@ -42,12 +44,12 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cart.orders.count
+        return Cart.shared.orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableViewCell
-        cell.configureCellData(order: cart.orders[indexPath.row])
+        cell.configureCellData(order: Cart.shared.orders[indexPath.row])
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
@@ -57,6 +59,13 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
 extension CartTableView: CartTableViewCellDelegate {
     func deleteCartTableViewCell(cell: CartTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        self.cart.deleteOrder(in: indexPath.row)
+        Cart.shared.deleteOrder(in: indexPath.row)
+//        tableView.reloadData()
+    }
+}
+
+extension CartTableView: Observer {
+    func cartDidUpdate() {
+        tableView.reloadData()
     }
 }
