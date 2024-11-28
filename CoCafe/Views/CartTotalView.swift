@@ -58,8 +58,8 @@ final class CartTotalView: UIView {
         button.setTitle("전체 취소", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .conanRibbonRed
-        button.layer.cornerRadius = 8
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        button.layer.cornerRadius = 18
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return button
     }()
     // 결제하기 버튼
@@ -68,14 +68,15 @@ final class CartTotalView: UIView {
         button.setTitle("결제하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .conanBrown
-        button.layer.cornerRadius = 8
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        button.layer.cornerRadius = 18
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return button
     }()
+    
     private lazy var lastContainerView: UIStackView = {
         let view2 = UIStackView(arrangedSubviews: [cancelButton, payButton])
         view2.axis = .horizontal
-        view2.spacing = 15
+        view2.spacing = 8
         view2.distribution = .fillEqually
         view2.alignment = .fill
         return view2
@@ -120,9 +121,9 @@ final class CartTotalView: UIView {
             cartTableView.topAnchor.constraint(equalTo: infoContainerStackView.bottomAnchor, constant: 10),
             
             // 전체 취소와 결제하기를 감싸는 스택뷰
-            lastContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            lastContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            lastContainerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -45),
+            lastContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            lastContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            lastContainerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 5),
             lastContainerView.heightAnchor.constraint(equalToConstant: 58),
         ])
     }
