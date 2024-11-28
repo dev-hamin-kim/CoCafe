@@ -15,8 +15,8 @@ class MenuCategoryView: UIView {
     weak var delegate: MenuCategoryViewDelegate?
     
     private lazy var menuSegmentedControl: UISegmentedControl = {
-        let items = ["Coffee", "Non-Coffee", "Dessert"]
-        //let items: [String] = Category.allCases.map { $0.rawValue } // model data에서 받오기
+        //let items = ["Coffee", "Non-Coffee", "Dessert"]
+        let items: [String] = Category.allCases.map { $0.rawValue } // model data에서 받오기
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         
@@ -77,18 +77,8 @@ class MenuCategoryView: UIView {
     }
     
     @objc private func segmentChanged(_ sender: UISegmentedControl) {
-        let selectedCategory: Category
-        switch sender.selectedSegmentIndex {
-        case 0:
-            selectedCategory = .Coffee
-        case 1:
-            selectedCategory = .NonCoffee
-        case 2:
-            selectedCategory = .Dessert
-        default:
-            return
+        if let selectedCategory = Category(rawValue: sender.titleForSegment(at: sender.selectedSegmentIndex) ?? "") {
+            delegate?.categoryChanged(to: selectedCategory)
         }
-        //print("Delegate: \(delegate)") // delegate가 제대로 설정되었는지 확인
-        delegate?.categoryChanged(to: selectedCategory)
     }
 }
