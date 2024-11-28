@@ -9,9 +9,9 @@ import UIKit
 
 //stackView로 카테고리와 메뉴 뷰 병합
 final class MainView: UIView {
-    private let menuCategoryView = MenuCategoryView()
+    let menuCategoryView = MenuCategoryView()
     private let topLogoView = TopLogoView()
-    private let coffeeMenuView = CoffeeMenuView()
+    let coffeeMenuView = CoffeeMenuView()
     private let cartTotalView = CartTotalView()
     
     private lazy var stackView = {
