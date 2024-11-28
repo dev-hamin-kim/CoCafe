@@ -14,8 +14,6 @@ final class MainViewController: UIViewController {
     private let menuCategoryView = MenuCategoryView()
     private let coffeeMenuView = CoffeeMenuView()
     
-    var cart = Cart(orders: [])  // Cart 객체 초기화
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +37,7 @@ extension MainViewController: MenuCategoryViewDelegate {
 
 extension MainViewController: CoffeeMenuViewDelegate {
     func didUpdateItem(_ item: Item) {
-        mainView.cartTotalView.cart.addToCart(item: item)
+        Cart.shared.addToCart(item: item)
     }
 }
 
