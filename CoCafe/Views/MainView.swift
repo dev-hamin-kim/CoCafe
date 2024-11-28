@@ -8,7 +8,7 @@
 import UIKit
 
 //stackView로 카테고리와 메뉴 뷰 병합
-class CoCafeTopStackView: UIView {
+class MainView: UIView {
     var menuCategoryView: MenuCategoryView!
     var topLogoView: TopLogoView!
     var coffeeMenuView: CoffeeMenuView!
