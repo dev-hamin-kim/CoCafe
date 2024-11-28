@@ -9,13 +9,14 @@ import UIKit
 
 class MenuCategoryViewController: UIViewController {
 
-    var stackView: MenuCategoryStackView!
+    //var stackView: CoCafeTopStackView!
+    var coCafeTopView: CoCafeTopView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stackView = MenuCategoryStackView()
-        view = stackView
+        coCafeTopView = CoCafeTopView()
+        view = coCafeTopView
     }
 }
 

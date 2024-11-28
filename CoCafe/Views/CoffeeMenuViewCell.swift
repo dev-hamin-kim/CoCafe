@@ -8,7 +8,7 @@
 import UIKit
 
 class CoffeeMenuViewCell: UITableViewCell {
-    static let identifier = "CoffeeMenuViewCell"
+    //static let identifier = "CoffeeMenuViewCell"
 
     private let menuImageView: UIImageView = {
         let imageView = UIImageView()
