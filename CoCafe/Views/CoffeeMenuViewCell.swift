@@ -74,6 +74,6 @@ class CoffeeMenuViewCell: UITableViewCell {
     func configure(with item: Item) {
         menuImageView.image = UIImage(named: item.icon)
         nameLabel.text = item.name
-        priceLabel.text = "\(item.price)원"
+        priceLabel.text = "\(item.price.withComma)원"
     }
 }
