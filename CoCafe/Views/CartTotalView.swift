@@ -5,8 +5,20 @@
 //  Created by t2023-m0072 on 11/25/24.
 //
 import UIKit
+protocol CartTotalViewDelegate: AnyObject {
+    func showAlertCartTotalView()
+}
+
 final class CartTotalView: UIView {
     let cartTableView = CartTableView()
+    weak var delegate: CartTotalViewDelegate?
+    var cart: Cart? {
+        didSet{
+            totalCountLabel.text = "\(cart?.totalQuantity() ?? 0)개"
+            totalPriceLabel.text = "총 금액: \(cart?.totalPrice().withComma ?? "0")원"
+        }
+    }
+    
     // 브라운 배경을 넣어주는 뷰 추가
     private lazy var infoContainerStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [totalCountLabel, totalPriceLabel])
@@ -72,6 +84,8 @@ final class CartTotalView: UIView {
     // 초기화 메서드
     override init(frame: CGRect) {
         super.init(frame: frame)
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        
         
         setupLayout()
     }
@@ -118,6 +132,7 @@ final class CartTotalView: UIView {
         cancelButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
+    
     func setPayAction(target: Any?, action: Selector) {
         payButton.addTarget(target, action: action, for: .touchUpInside)
     }
@@ -127,10 +142,37 @@ final class CartTotalView: UIView {
         totalCountLabel.text = "\(totalquantity)개"
         totalPriceLabel.text = "총 금액: \(totalprice)원"
     }
+    
+    @objc private func cancelButtonTapped() {
+        delegate?.showAlertCartTotalView()
+    }      // order 인스턴스 삭제하는 작업 필요
 }
 
 @available(iOS 17.0, *)
 #Preview {
     ViewController()
 }
+
+extension ViewController: CartTotalViewDelegate {
+   
+
+    func showAlertCartTotalView() {
+        let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default) { action in
+            print("확인 버튼이 눌렸습니다.")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .default) { cancel in
+            print("취소 버튼이 눌렸습니다.")
+        }
+        
+        // 뷰 위에 올리는 역할.
+        alert.addAction(success)
+        alert.addAction(cancel)
+        
+        // 다음 화면으로 이동.
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+
 
