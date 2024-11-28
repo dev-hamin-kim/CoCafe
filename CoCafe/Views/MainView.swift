@@ -17,7 +17,7 @@ final class MainView: UIView {
     private lazy var stackView = {
         let stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView, cartTotalView])
         stackView.axis = .vertical
-        stackView.spacing = 10 // 뷰 사이의 간격
+        stackView.spacing = 20 // 뷰 사이의 간격
         stackView.alignment = .fill // 자식 뷰 가로 크기 채움
         stackView.distribution = .fill
         return stackView
