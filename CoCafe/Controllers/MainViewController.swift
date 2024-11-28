@@ -42,7 +42,7 @@ extension MainViewController: CoffeeMenuViewDelegate {
     }
 }
 
-//@available(iOS 17.0, *)
-//#Preview {
-//    MainViewController()
-//}
+@available(iOS 17.0, *)
+#Preview {
+    MainViewController()
+}
