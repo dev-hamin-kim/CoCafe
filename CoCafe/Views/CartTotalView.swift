@@ -7,6 +7,7 @@
 import UIKit
 protocol CartTotalViewDelegate: AnyObject {
     func showCancelAlertCartTotalView()
+    func showPayAlertCartTotalView()
 }
 
 final class CartTotalView: UIView {
@@ -79,6 +80,7 @@ final class CartTotalView: UIView {
         Cart.shared.addObserver(self)
         setupLayout()
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
     }
     
     deinit {
@@ -124,6 +126,10 @@ final class CartTotalView: UIView {
     @objc private func cancelButtonTapped() {
         delegate?.showCancelAlertCartTotalView()
     }
+    
+    @objc private func payButtonTapped() {
+        delegate?.showPayAlertCartTotalView()
+    }
 }
 
 extension CartTotalView: Observer {
@@ -139,8 +145,7 @@ extension MainViewController: CartTotalViewDelegate {
         let success = UIAlertAction(title: "확인", style: .default) { action in
             Cart.shared.clearCart()
         }
-        let cancel = UIAlertAction(title: "취소", style: .default) { cancel in
-        }
+        let cancel = UIAlertAction(title: "취소", style: .default)
         
         // 뷰 위에 올리는 역할.
         alert.addAction(success)
@@ -149,4 +154,16 @@ extension MainViewController: CartTotalViewDelegate {
         // 다음 화면으로 이동.
         present(alert, animated: true, completion: nil)
     }
+    
+    func showPayAlertCartTotalView() {
+        let alert = UIAlertController(title: "결제 완료", message: "", preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default)
+        
+        // 뷰 위에 올리는 역할.
+        alert.addAction(success)
+        
+        // 다음 화면으로 이동.
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
