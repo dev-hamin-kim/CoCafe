@@ -5,8 +5,16 @@
 //  Created by 김하민 on 11/25/24.
 //
 
-struct Cart {
-    var orders: [Order]
+protocol Observer: AnyObject {
+    func cartDidUpdate()
+}
+
+class Cart {
+    var orders = [Order]()
+    static let shared = Cart()
+    private var observers = [Observer]()
+    
+    private init() {}
     
     /// Cart 내 Order들의 총 가격을 출력합니다.
     /// 4,900 처럼 comma 처리가 된 String이 필요하시다면, .totalPrice().withComma로 호출하시면 됩니다.
@@ -32,28 +40,50 @@ struct Cart {
         return result
     }
     
-    
-    /// Cart 내 row번째 항목을 삭제합니다. (선택 삭제)
-    mutating func deleteOrder(in row: Int) {
+    func deleteOrder(in row: Int) {
         orders.remove(at: row)
+        notifyObservers()
     }
     
-    
-    /// Cart안의 모든 orders를 없앱니다 (전체 취소)
-    mutating func clearCart() {
-        orders = []
+    func clearCart() {
+        orders.removeAll()
+        notifyObservers()
     }
     
-    
-    /// 옵션까지 동일한 item이 Cart의 주문내역에 있다면, 같은 item의 count을 1 늘려주고,
-    /// 주문내역에 동일한 item이 없다면 해당 item을 count 1으로 넣어줍니다.
-    mutating func addToCart(item: Item) {
+    func addToCart(item: Item) {
         let hasSameItem = orders.contains(where: { $0.item == item })
-        guard hasSameItem else { return orders.append(Order(item: item, count: 1)) }
-        for index in 0..<orders.count {
-            if orders[index].item == item {
-                orders[index].addOne()
+        if !hasSameItem {
+            let newOrder = Order(item: item, count: 1)
+            newOrder.delegate = self
+            orders.append(newOrder)
+        } else {
+            for index in 0..<orders.count {
+                if orders[index].item == item {
+                    orders[index].addOne()
+                    break
+                }
             }
         }
+        notifyObservers()
+    }
+    
+    func addObserver(_ observer: Observer) {
+        observers.append(observer)
+    }
+    
+    func removeObserver(_ observer: Observer) {
+        observers.removeAll { $0 === observer }
+    }
+    
+    private func notifyObservers() {
+        for observer in observers {
+            observer.cartDidUpdate()
+        }
+    }
+}
+
+extension Cart: OrderDelegate {
+    func orderDidChange(order: Order) {
+        notifyObservers()
     }
 }
