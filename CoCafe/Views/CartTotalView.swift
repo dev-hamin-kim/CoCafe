@@ -16,7 +16,8 @@ final class CartTotalView: UIView {
         didSet{
             totalCountLabel.text = "총 \(cart.totalQuantity())개"
             totalPriceLabel.text = "금액: \(cart.totalPrice().withComma)원"
-            cartTableView.orders = cart.orders
+            // 1. 카트 토탈 뷰 -> 카트 테이블 뷰로 카트 인스턴스 전달
+            cartTableView.cart = cart
         }
         
     }
@@ -89,7 +90,6 @@ final class CartTotalView: UIView {
         super.init(frame: frame)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
-        
         setupLayout()
     }
     
@@ -154,9 +154,9 @@ final class CartTotalView: UIView {
 extension MainViewController: CartTotalViewDelegate {
     func showAlertCartTotalView() {
         let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
-        let success = UIAlertAction(title: "확인", style: .default) { action in
+        let success = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             print("확인 버튼이 눌렸습니다.")
-            // 전체 삭제 추가 필요
+            self!.mainView.cartTotalView.cart.clearCart()
         }
         let cancel = UIAlertAction(title: "취소", style: .default) { cancel in
             print("취소 버튼이 눌렸습니다.")
@@ -170,6 +170,3 @@ extension MainViewController: CartTotalViewDelegate {
         present(alert, animated: true, completion: nil)
     }
 }
-
-
-

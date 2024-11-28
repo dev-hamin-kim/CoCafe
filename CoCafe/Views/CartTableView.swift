@@ -8,7 +8,7 @@ import UIKit
 
 final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
-    var orders = [Order]() {
+    var cart = Cart(orders: []) {
         didSet { tableView.reloadData() }
     }
     
@@ -42,12 +42,12 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.count
+        return cart.orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartTableViewCell
-        cell.configureCellData(order: orders[indexPath.row])
+        cell.configureCellData(order: cart.orders[indexPath.row])
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
@@ -57,7 +57,6 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
 extension CartTableView: CartTableViewCellDelegate {
     func deleteCartTableViewCell(cell: CartTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        orders.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .left)
+        self.cart.deleteOrder(in: indexPath.row)
     }
 }
