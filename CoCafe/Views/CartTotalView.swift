@@ -148,12 +148,7 @@ final class CartTotalView: UIView {
     }      // order 인스턴스 삭제하는 작업 필요
 }
 
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}
-
-extension ViewController: CartTotalViewDelegate {
+extension MainViewController: CartTotalViewDelegate {
    
 
     func showAlertCartTotalView() {

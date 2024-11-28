@@ -42,8 +42,8 @@ final class MainView: UIView {
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
