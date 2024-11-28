@@ -37,6 +37,7 @@ final class MainView: UIView {
         
         topLogoView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         menuCategoryView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        coffeeMenuView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
 
