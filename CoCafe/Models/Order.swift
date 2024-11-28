@@ -7,17 +7,31 @@
 
 import Foundation
 
-struct Order {
-    let item: Item
-    var count: Int = 1
+protocol OrderDelegate: AnyObject {
+    func orderDidChange(order: Order)
+}
+
+class Order {
+    var item: Item
+    var count = 1 {
+        didSet {
+            delegate?.orderDidChange(order: self)
+        }
+    }
+    weak var delegate: OrderDelegate?
     
-    mutating func addOne() {
+    init(item: Item, count: Int) {
+        self.item = item
+        self.count = count
+    }
+    
+    func addOne() {
         count += 1
     }
     
-    mutating func subtractOne() {
-        guard count > 1 else { return }
-        count -= 1
+    func subtractOne() {
+        if count > 1 {
+            count -= 1
+        }
     }
-
 }
