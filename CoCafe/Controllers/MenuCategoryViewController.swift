@@ -15,7 +15,7 @@ class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, Co
     private let menuCategoryView = MenuCategoryView()
     private let coffeeMenuView = CoffeeMenuView()
     
-    var currentOrders: [Order] = []
+    var cart = Cart(orders: [])  // Cart 객체 초기화
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, Co
         // stackView 사용하는 경우
         stackView = CoCafeTopStackView()
         view = stackView
-                
+        
         //delegate nil 되는 이슈 발생 -> menuCategoryView.delegate = self 말고 아래와 같이 선언해주어야 함..
         stackView.menuCategoryView.delegate = self
         stackView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정
@@ -33,14 +33,14 @@ class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, Co
         
         // addsubView 사용하는 경우
         /*coCafeTopView = CoCafeTopView()
-        view = coCafeTopView
-        
-        
-        //delegate nil 되는 이슈 발생 -> menuCategoryView.delegate = self 말고 아래와 같이 선언해주어야 함..
-        coCafeTopView.menuCategoryView.delegate = self
-        coCafeTopView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정*/
+         view = coCafeTopView
+         
+         
+         //delegate nil 되는 이슈 발생 -> menuCategoryView.delegate = self 말고 아래와 같이 선언해주어야 함..
+         coCafeTopView.menuCategoryView.delegate = self
+         coCafeTopView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정*/
     }
-
+    
     func categoryChanged(to category: Category) {
         // stackView 사용하는 경우
         stackView.coffeeMenuView.updateMenuItems(for: category)
@@ -52,9 +52,9 @@ class MenuCategoryViewController: UIViewController, MenuCategoryViewDelegate, Co
         //print("Category Changed to: \(category)")
     }
     
-    func didUpdateOrders(_ orders: [Order]) {
-        currentOrders = orders
-        print("Orders updated in AnotherViewController: \(currentOrders)")
+    func didUpdateItem(_ item: Item) {
+        //cart.addToCart(item: item)
+        print(item)
     }
 }
 

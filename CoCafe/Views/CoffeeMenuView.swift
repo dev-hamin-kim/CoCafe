@@ -8,15 +8,14 @@
 import UIKit
 
 protocol CoffeeMenuViewDelegate: AnyObject {
-    func didUpdateOrders(_ orders: [Order])
+    func didUpdateItem(_ item: Item)
 }
 
 class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
     weak var delegate: CoffeeMenuViewDelegate?
 
     var menuItems: [Item] = []
-    var orders: [Order] = []  // 주문 목록 저장
-    
+
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,16 +76,10 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = menuItems[indexPath.row]
+        delegate?.didUpdateItem(selectedItem)
         
-        // 이미 주문에 있는 항목인지 확인
-        if let index = orders.firstIndex(where: { $0.item.name == selectedItem.name }) {
-            orders[index].addOne()  // 수량 증가
-        } else {
-            orders.append(Order(item: selectedItem))  // 새로운 주문 추가
-        }
-        delegate?.didUpdateOrders(orders)  // 변경된 orders 전달
         // 디버깅용 출력
-        //print("Current Orders: \(orders.map { "\($0.item.name) - \($0.count)" })")
+        //print("Current Orders: \(cart.orders.map { "\($0.item.name) - \($0.count)" })")
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
