@@ -8,15 +8,23 @@
 import UIKit
 
 //stackView로 카테고리와 메뉴 뷰 병합
-class CoCafeTopStackView: UIView {
-    var menuCategoryView: MenuCategoryView!
-    var topLogoView: TopLogoView!
-    var coffeeMenuView: CoffeeMenuView!
-    var stackView: UIStackView!
+final class MainView: UIView {
+    let menuCategoryView = MenuCategoryView()
+    private let topLogoView = TopLogoView()
+    let coffeeMenuView = CoffeeMenuView()
+    private let cartTotalView = CartTotalView()
+    
+    private lazy var stackView = {
+        let stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView, cartTotalView])
+        stackView.axis = .vertical
+        stackView.spacing = 10 // 뷰 사이의 간격
+        stackView.alignment = .fill // 자식 뷰 가로 크기 채움
+        stackView.distribution = .fill
+        return stackView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white //view 배경 색상 설정
         setupViews()
     }
 
@@ -25,19 +33,10 @@ class CoCafeTopStackView: UIView {
     }
 
     private func setupViews() {
-        topLogoView = TopLogoView()
-        menuCategoryView = MenuCategoryView()
-        coffeeMenuView = CoffeeMenuView()
+        backgroundColor = .white //view 배경 색상 설정
         
         topLogoView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         menuCategoryView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
-        stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView])
-        stackView.axis = .vertical
-        stackView.spacing = 10 // 뷰 사이의 간격
-        stackView.alignment = .fill // 자식 뷰 가로 크기 채움
-        stackView.distribution = .fill
-
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
 
