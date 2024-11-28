@@ -7,9 +7,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    
-    var stackView: CoCafeTopStackView! //스택뷰로 View 병합
+final class MainViewController: UIViewController {
+    var mainView: MainView! //스택뷰로 View 병합
     var coCafeTopView: CoCafeTopView! //addSubView로 View 병합
     
     private let menuCategoryView = MenuCategoryView()
@@ -20,19 +19,19 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stackView = CoCafeTopStackView()
-        view = stackView
+        mainView = MainView()
+        view = mainView
         
-        stackView.menuCategoryView.delegate = self
-        stackView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정
+        mainView.menuCategoryView.delegate = self
+        mainView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정
         
-        stackView.coffeeMenuView.delegate = self  // delegate 설정
+        mainView.coffeeMenuView.delegate = self  // delegate 설정
     }
 }
 
 extension MainViewController: MenuCategoryViewDelegate {
     func categoryChanged(to category: Category) {
-        stackView.coffeeMenuView.updateMenuItems(for: category)
+        mainView.coffeeMenuView.updateMenuItems(for: category)
     }
 }
 
@@ -43,7 +42,7 @@ extension MainViewController: CoffeeMenuViewDelegate {
     }
 }
 
-@available(iOS 17.0, *)
-#Preview {
-    MainViewController()
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//    MainViewController()
+//}
