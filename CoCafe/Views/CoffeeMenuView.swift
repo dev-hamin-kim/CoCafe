@@ -68,6 +68,10 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         
         let item = menuItems[indexPath.row]
         cell.configure(with: item)  // 커스텀 셀을 사용할 경우
+        
+        // 회색 선택 효과 제거
+        cell.selectionStyle = .none
+
         return cell
     }
     
