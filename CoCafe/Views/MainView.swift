@@ -8,15 +8,15 @@
 import UIKit
 
 //stackView로 카테고리와 메뉴 뷰 병합
-class MainView: UIView {
-    var menuCategoryView: MenuCategoryView!
-    var topLogoView: TopLogoView!
-    var coffeeMenuView: CoffeeMenuView!
+final class MainView: UIView {
+    private let menuCategoryView = MenuCategoryView()
+    private let topLogoView = TopLogoView()
+    private let coffeeMenuView = CoffeeMenuView()
+    private let cartTotalView = CartTotalView()
     var stackView: UIStackView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white //view 배경 색상 설정
         setupViews()
     }
 
@@ -25,9 +25,7 @@ class MainView: UIView {
     }
 
     private func setupViews() {
-        topLogoView = TopLogoView()
-        menuCategoryView = MenuCategoryView()
-        coffeeMenuView = CoffeeMenuView()
+        backgroundColor = .white //view 배경 색상 설정
         
         topLogoView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         menuCategoryView.heightAnchor.constraint(equalToConstant: 50).isActive = true
