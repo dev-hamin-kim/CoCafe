@@ -42,14 +42,14 @@ final class MainView: UIView {
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
 
-//@available(iOS 17.0, *)
-//#Preview {
-//    MenuCategoryViewController()
-//}
+@available(iOS 17.0, *)
+#Preview {
+    MainViewController()
+}
