@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 /// 음료의 종류를 enum으로 선언해놓은 Category입니다.
 ///
 /// Category의 모든 case들을 [String]으로 받으시려면 아래의 코드를 사용하시면 됩니다.
@@ -48,6 +49,7 @@ struct Item: Equatable {
         Item(name: "치즈케이크", category: .Dessert, price: 5500, icon: "CheeseCake"),
     ]
 }
+
 
 // Int 4900을 String "4,900"으로 포맷해주는 extension입니다.
 // 변환이 필요한 Int형 자료 뒤에 .withComma를 붙여 사용하시면 됩니다.
