@@ -16,11 +16,9 @@ class MenuCategoryView: UIView {
     
     private lazy var menuSegmentedControl: UISegmentedControl = {
         let items = ["Coffee", "Non-Coffee", "Dessert"]
-        //let items = ["Coffee", "NonCoffee", "Dessert"]
         //let items: [String] = Category.allCases.map { $0.rawValue } // model data에서 받오기
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
-        control.selectedSegmentTintColor = UIColor(named: "MainColor")
         
         let normalAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "MainColor") ?? .black,
@@ -30,10 +28,7 @@ class MenuCategoryView: UIView {
             .foregroundColor: UIColor.white,
             .font: UIFont.boldSystemFont(ofSize: 16)
         ]
-        
-        // 흰색으로 배경 설정해도 적용되지 않음
-        //control.backgroundColor = .white
-        
+
         control.setTitleTextAttributes(normalAttributes, for: .normal)
         control.setTitleTextAttributes(selectedAttributes, for: .selected)
         
