@@ -4,7 +4,6 @@
 //
 //  Created by 김하민 on 11/25/24.
 //
-
 protocol Observer: AnyObject {
     func cartDidUpdate()
 }
@@ -16,8 +15,6 @@ class Cart {
     
     private init() {}
     
-    /// Cart 내 Order들의 총 가격을 출력합니다.
-    /// 4,900 처럼 comma 처리가 된 String이 필요하시다면, .totalPrice().withComma로 호출하시면 됩니다.
     func totalPrice() -> Int {
         var result: Int = 0
         
@@ -28,8 +25,6 @@ class Cart {
         return result
     }
     
-    
-    /// Cart 내 Order들의 총 갯수를 출력합니다.
     func totalQuantity() -> Int {
         var result: Int = 0
         
