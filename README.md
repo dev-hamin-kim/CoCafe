@@ -16,8 +16,12 @@
 | 이명지   | 주문 내역 테이블뷰 | [@zzangmmz](https://github.com/zzangmmz) |
 | 최성준   | 주문 총합 / 결제하기 버튼 | [@Choi-jun08](https://github.com/Choi-jun08) |
 
+<br>
+
 ## ⏰ 기간
 > 2024.11.25-2024.11.28
+
+<br>
 
 ## 🛠️ 기술 스택
 
@@ -49,14 +53,19 @@ Frameworks: UIKit
   - 총 주문 갯수, 비용
   - 전체 취소 및 결제 기능
 
+<br>
 
 ## 🎨 와이어프레임
 ![](https://velog.velcdn.com/images/soycong/post/f141ffe5-a320-4fec-a964-40bbc3e4803e/image.png)
+
+<br>
 
 ## 📱 시연
 ![Simulator Screen Recording - iPhone 16 - 2024-11-29 at 13 12 10](https://github.com/user-attachments/assets/1742445d-e541-4550-b8dc-a66d8273d1bb)
 
 [실제 시연 영상](https://youtube.com/shorts/t5Kwp7IA9ps?si=d_npExXX8PWYIU-g)
+
+<br>
 
 ## 🗣️ Commit Convention
 
