@@ -38,3 +38,19 @@
 ### Communications
 - Slack
 - Zep
+
+## 🗣️ Commit Convention
+- `add` : 새로운 파일 및 폴더 추가
+- `feat` : Screen, Component, 기능 추가 및 수정 (큰 변경사항 위주) / 이미지 추가
+- `fix` : 버그 수정
+- `update` : 간단한 변경 사항
+- `refactor` : 코드 정리 및 단순화 / 간단한 스타일 수정 / 폴더 및 파일 이름이나 위치 변경 / 주석 및 콘솔 관리 / fontello 변경
+- `delete` : 폴더, 파일 삭제
+- `docs` : 문서 추가, 수정, 삭제 (ex. README.md)
+- `test` : 테스트 코드 작성, 수정, 삭제
+- `chore` : 패키지/라이브러리 추가, 버전 변경, 삭제
+
+## 📱 시연
+![Simulator Screen Recording - iPhone 16 - 2024-11-29 at 13 12 10](https://github.com/user-attachments/assets/1742445d-e541-4550-b8dc-a66d8273d1bb)
+
+[실제 시연 영상](https://youtube.com/shorts/t5Kwp7IA9ps?si=d_npExXX8PWYIU-g)
