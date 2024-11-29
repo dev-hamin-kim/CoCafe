@@ -4,10 +4,8 @@
 //
 //  Created by seohuibaek on 11/28/24.
 //
-
 import UIKit
 
-//stackView로 카테고리와 메뉴 뷰 병합
 final class MainView: UIView {
     let menuCategoryView = MenuCategoryView()
     private let topLogoView = TopLogoView()
@@ -17,8 +15,8 @@ final class MainView: UIView {
     private lazy var stackView = {
         let stackView = UIStackView(arrangedSubviews: [topLogoView, menuCategoryView, coffeeMenuView, cartTotalView])
         stackView.axis = .vertical
-        stackView.spacing = 20 // 뷰 사이의 간격
-        stackView.alignment = .fill // 자식 뷰 가로 크기 채움
+        stackView.spacing = 20
+        stackView.alignment = .fill
         stackView.distribution = .fill
         return stackView
     }()
@@ -33,7 +31,7 @@ final class MainView: UIView {
     }
 
     private func setupViews() {
-        backgroundColor = .white //view 배경 색상 설정
+        backgroundColor = .white
         
         topLogoView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         menuCategoryView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -48,9 +46,4 @@ final class MainView: UIView {
             stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-}
-
-@available(iOS 17.0, *)
-#Preview {
-    MainViewController()
 }

@@ -7,8 +7,8 @@
 import UIKit
 
 class TopLogoView: UIView {
-    private lazy var logoImageView = createImageView(named: "Logo") //ConanCafe 로고
-    private lazy var conanFaceImageView = createImageView(named: "ConanLogo") // 코난 얼굴 로고
+    private lazy var logoImageView = createImageView(named: "Logo")
+    private lazy var conanFaceImageView = createImageView(named: "ConanLogo")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

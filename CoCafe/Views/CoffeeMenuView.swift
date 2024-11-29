@@ -19,7 +19,7 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none // 밑줄 제거
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -51,7 +51,7 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         ])
     }
     
-    func updateMenuItems(for category: Category) { // 카테고리 전달
+    func updateMenuItems(for category: Category) {
         menuItems = Item.MenuList.filter { $0.category == category }
         tableView.reloadData()
     }
@@ -66,9 +66,7 @@ class CoffeeMenuView: UIView, UITableViewDataSource, UITableViewDelegate {
         }
         
         let item = menuItems[indexPath.row]
-        cell.configure(with: item)  // 커스텀 셀을 사용할 경우
-        
-        // 회색 선택 효과 제거
+        cell.configure(with: item)
         cell.selectionStyle = .none
 
         return cell

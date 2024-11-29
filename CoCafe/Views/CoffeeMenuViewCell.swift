@@ -4,7 +4,6 @@
 //
 //  Created by 네모 on 11/27/24.
 //
-
 import UIKit
 
 class CoffeeMenuViewCell: UITableViewCell {
