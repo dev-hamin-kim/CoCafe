@@ -4,20 +4,28 @@
 //
 //  Created by 김하민 on 11/25/24.
 //
-
 import Foundation
 
-struct Order {
-    let item: Item
-    var count: Int = 1
+class Order {
+    var item: Item
+    var count = 1 {
+        didSet {
+            Cart.shared.notifyObservers()
+        }
+    }
     
-    mutating func addOne() {
+    init(item: Item, count: Int) {
+        self.item = item
+        self.count = count
+    }
+    
+    func addOne() {
         count += 1
     }
     
-    mutating func subtractOne() {
-        guard count > 2 else { return }
-        count -= 1
+    func subtractOne() {
+        if count > 1 {
+            count -= 1
+        }
     }
-
 }
