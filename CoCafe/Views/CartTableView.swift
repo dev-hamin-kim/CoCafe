@@ -17,7 +17,7 @@ final class CartTableView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     deinit {
-        Cart.shared.removeObserver(self) // 옵저버 제거
+        Cart.shared.removeObserver(self)
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +60,6 @@ extension CartTableView: CartTableViewCellDelegate {
     func deleteCartTableViewCell(cell: CartTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         Cart.shared.deleteOrder(in: indexPath.row)
-//        tableView.reloadData()
     }
 }
 

@@ -4,27 +4,22 @@
 //
 //  Created by seohuibaek on 11/25/24.
 //
-
 import UIKit
 
 final class MainViewController: UIViewController {
-    var mainView: MainView! //스택뷰로 View 병합
-    var coCafeTopView: CoCafeTopView! //addSubView로 View 병합
-    
+    private let mainView = MainView()
+    private let coCafeTopView = CoCafeTopView()
     private let menuCategoryView = MenuCategoryView()
     private let coffeeMenuView = CoffeeMenuView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView = MainView()
         view = mainView
         
         mainView.menuCategoryView.delegate = self
-        mainView.coffeeMenuView.updateMenuItems(for: .Coffee) // 초기 데이터 설정
-        
-        mainView.coffeeMenuView.delegate = self  // delegate 설정
-        
+        mainView.coffeeMenuView.updateMenuItems(for: .Coffee)
+        mainView.coffeeMenuView.delegate = self
         mainView.cartTotalView.delegate = self
     }
 }

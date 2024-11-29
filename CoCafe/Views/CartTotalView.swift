@@ -6,8 +6,9 @@
 //
 import UIKit
 protocol CartTotalViewDelegate: AnyObject {
-    func showCancelAlertCartTotalView()
-    func showPayAlertCartTotalView()
+    func showOrderCancelAlert()
+    func showPayAlert()
+    func showCompletePayAlert()
 }
 
 final class CartTotalView: UIView {
@@ -99,10 +100,8 @@ final class CartTotalView: UIView {
         infoContainerStackView.translatesAutoresizingMaskIntoConstraints = false
         cartTableView.translatesAutoresizingMaskIntoConstraints = false
         lastContainerView.translatesAutoresizingMaskIntoConstraints = false
-        // 레이아웃 제약 설정
+        
         NSLayoutConstraint.activate([
-            
-            // 총 개수와 총 금액을 감싸는 컨테이너 스택 뷰
             infoContainerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             infoContainerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             infoContainerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -280),
@@ -115,7 +114,6 @@ final class CartTotalView: UIView {
             cartTableView.bottomAnchor.constraint(equalTo: lastContainerView.topAnchor, constant: -10),
             cartTableView.topAnchor.constraint(equalTo: infoContainerStackView.bottomAnchor, constant: 10),
             
-            // 전체 취소와 결제하기를 감싸는 스택뷰
             lastContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             lastContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             lastContainerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 5),
@@ -124,11 +122,11 @@ final class CartTotalView: UIView {
     }
     
     @objc private func cancelButtonTapped() {
-        delegate?.showCancelAlertCartTotalView()
+        delegate?.showOrderCancelAlert()
     }
     
     @objc private func payButtonTapped() {
-        delegate?.showPayAlertCartTotalView()
+        delegate?.showPayAlert()
     }
 }
 
@@ -140,30 +138,38 @@ extension CartTotalView: Observer {
 }
 
 extension MainViewController: CartTotalViewDelegate {
-    func showCancelAlertCartTotalView() {
+    func showOrderCancelAlert() {
         let alert = UIAlertController(title: "메뉴 전체 취소", message: "전체 메뉴를 취소하시겠습니까?", preferredStyle: .alert)
         let success = UIAlertAction(title: "확인", style: .default) { action in
             Cart.shared.clearCart()
         }
         let cancel = UIAlertAction(title: "취소", style: .default)
         
-        // 뷰 위에 올리는 역할.
         alert.addAction(success)
         alert.addAction(cancel)
         
-        // 다음 화면으로 이동.
         present(alert, animated: true, completion: nil)
     }
     
-    func showPayAlertCartTotalView() {
-        let alert = UIAlertController(title: "결제 완료", message: "", preferredStyle: .alert)
-        let success = UIAlertAction(title: "확인", style: .default)
+    func showPayAlert() {
+        let alert = UIAlertController(title: "결제 하시겠습니까?", message: "", preferredStyle: .alert)
+        let success = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+            self?.showCompletePayAlert()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .default)
         
-        // 뷰 위에 올리는 역할.
         alert.addAction(success)
-        
-        // 다음 화면으로 이동.
+        alert.addAction(cancel)
+
         present(alert, animated: true, completion: nil)
     }
     
+    func showCompletePayAlert() {
+        let alert = UIAlertController(title: "결제 완료", message: "", preferredStyle: .alert)
+        let success  = UIAlertAction(title: "확인", style: .default)
+        
+        alert.addAction(success)
+
+        present(alert, animated: true, completion: nil)
+    }
 }

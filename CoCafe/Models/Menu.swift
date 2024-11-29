@@ -7,17 +7,6 @@
 
 import Foundation
 
-
-/// 음료의 종류를 enum으로 선언해놓은 Category입니다.
-///
-/// Category의 모든 case들을 [String]으로 받으시려면 아래의 코드를 사용하시면 됩니다.
-///
-///     let item: [String] = Category.allCases.map { $0.rawValue }
-///
-/// 결과는 아래와 같습니다.
-///
-///     ["Coffee", "Non-Coffee", "Dessert"]
-///
 enum Category: String, CaseIterable {
     case Coffee
     case NonCoffee = "Non-Coffee"
@@ -30,8 +19,6 @@ struct Item: Equatable {
     let price: Int
     let icon: String
     
-    // 추후 음료 옵션을 넣을 경우 같은 이름을 가진 음료라도 다른 음료로 취급할 수 있게 Equatable 프로토콜을 채택하였습니다.
-    // 옵션 넣은 뒤에 옵션도 같은 경우에만 true를 리턴하도록 refactor 예정.
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.name == rhs.name
     }
@@ -60,9 +47,6 @@ struct Item: Equatable {
     ]
 }
 
-
-// Int 4900을 String "4,900"으로 포맷해주는 extension입니다.
-// 변환이 필요한 Int형 자료 뒤에 .withComma를 붙여 사용하시면 됩니다.
 extension Int {
 
     private static var commaFormatter: NumberFormatter = {
